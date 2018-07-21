@@ -1,0 +1,29 @@
+﻿@model IEnumerable<FASTUniversity.ViewModels.EnrollmentDataGroup>
+
+@{
+    ViewBag.Title = "Student Body Statistics";
+}
+<h2>@ViewBag.Title.</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EnrollmentData)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentCount)
+        </th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentData)
+            </td>
+            <td>
+                @item.StudentCount
+            </td>
+        </tr>
+    }
+</table>
