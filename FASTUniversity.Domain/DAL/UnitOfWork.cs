@@ -1,8 +1,5 @@
 ﻿using FASTUniversity.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace FASTUniversity.DAL
 {
@@ -12,8 +9,9 @@ namespace FASTUniversity.DAL
         private GenericRepository<Department> departmentRepository;
         private GenericRepository<Course> courseRepository;
         private GenericRepository<Student> studentRepository;
-
-
+        private GenericRepository<Instructor> instructorRepository;
+        private GenericRepository<OfficeAssignment> officeAssignmentsRepository;
+        
         public GenericRepository<Student> StudentRepository
         {
             get
@@ -26,7 +24,30 @@ namespace FASTUniversity.DAL
                 return studentRepository;
             }
         }
+        public GenericRepository<Instructor> InstructorRepository
+        {
+            get
+            {
 
+                if (this.instructorRepository == null)
+                {
+                    this.instructorRepository = new GenericRepository<Instructor>(context);
+                }
+                return instructorRepository;
+            }
+        }
+        public GenericRepository<OfficeAssignment> OfficeAssignmentRepository
+        {
+            get
+            {
+
+                if (this.officeAssignmentsRepository == null)
+                {
+                    this.officeAssignmentsRepository = new GenericRepository<OfficeAssignment>(context);
+                }
+                return officeAssignmentsRepository;
+            }
+        }
         public GenericRepository<Department> DepartmentRepository
         {
             get

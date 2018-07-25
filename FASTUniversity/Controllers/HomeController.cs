@@ -1,5 +1,5 @@
 ﻿using FASTUniversity.DAL;
-using FASTUniversity.ViewModels;
+using FASTUniversity.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,14 @@ namespace FASTUniversity.Controllers
 {
     public class HomeController : Controller
     {
-        SchoolContext _db = new SchoolContext();
+        private UnitOfWork unitOfWork;
+
+        public HomeController(UnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
+
+
         public ActionResult Index()
         {
             return View();
@@ -18,7 +25,7 @@ namespace FASTUniversity.Controllers
 
         public ActionResult About()
         {
-            var data = from student in _db.Students
+            var data = from student in this.unitOfWork.StudentRepository.Get()
                        group student by student.EnrolementDate into dataGroup
                        select new EnrollmentDataGroup()
                        {

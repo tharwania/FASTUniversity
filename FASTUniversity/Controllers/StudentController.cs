@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using FASTUniversity.DAL;
 using FASTUniversity.Models;
@@ -14,11 +10,17 @@ namespace FASTUniversity.Controllers
 {
     public class StudentController : Controller
     {
-        private UnitOfWork unitOfWork = new UnitOfWork();
+        private UnitOfWork unitOfWork;
+
+        public StudentController(UnitOfWork unitOfWork)
+        {
+            this.unitOfWork = unitOfWork;
+        }
 
         // GET: Student
         public ActionResult Index(string sortOrder,string currentFilter, string searchString, int? page)
         {
+           
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParam = string.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.DateSortParam = sortOrder == "Date" ? "date_desc" : "Date";

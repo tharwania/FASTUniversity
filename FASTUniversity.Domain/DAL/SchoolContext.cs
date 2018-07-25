@@ -1,10 +1,6 @@
 ﻿using FASTUniversity.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Linq;
-using System.Web;
 
 namespace FASTUniversity.DAL
 {
@@ -33,5 +29,7 @@ namespace FASTUniversity.DAL
                 .HasOptional(model => model.OfficeAssignment)
                 .WithRequired(x => x.Instructor);
         }
+
+        public System.Data.Entity.DbSet<FASTUniversity.Models.Department> Departments { get; set; }
     }
 }
